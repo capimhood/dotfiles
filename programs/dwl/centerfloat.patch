@@ -1,0 +1,74 @@
+
+From bbebc4a8643f1b27597c91ca2343379652fe5346 Mon Sep 17 00:00:00 2001
+From: wochap <gean.marroquin@gmail.com>
+Date: Mon, 11 Sep 2023 21:34:00 -0500
+Subject: [PATCH] rewrite so it works with latest dwl
+
+if width or height is less than or equal to 1, then the value will be taken as a percentage value, e.g. 0.5 is 50%, 0.25 is 25%, 1 is 100%
+
+**NOTE**, some clients such as Thunar, have a minimal width/height
+---
+ config.def.h |  7 ++++---
+ dwl.c        | 16 ++++++++++++++++
+ 2 files changed, 20 insertions(+), 3 deletions(-)
+
+diff --git a/config.def.h b/config.def.h
+index 1677f6f12..05bcfa11b 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -6,17 +6,18 @@ static const float bordercolor[]           = {0.5, 0.5, 0.5, 1.0};
+ static const float focuscolor[]            = {1.0, 0.0, 0.0, 1.0};
+ /* To conform the xdg-protocol, set the alpha to zero to restore the old behavior */
+ static const float fullscreen_bg[]         = {0.1, 0.1, 0.1, 1.0};
++static const int center_relative_to_monitor = 0; /* 0 means center floating relative to the window area */
+ 
+ /* tagging - tagcount must be no greater than 31 */
+ #define TAGCOUNT (9)
+ static const int tagcount = TAGCOUNT;
+ 
+ static const Rule rules[] = {
+-	/* app_id     title       tags mask     isfloating   monitor */
++	/* app_id     title       tags mask     isfloating   monitor x   y  width height */
+ 	/* examples:
+-	{ "Gimp",     NULL,       0,            1,           -1 },
++	{ "Gimp",     NULL,       0,            1,           -1,     0,  0, 1000, 0.75 },
+ 	*/
+-	{ "firefox",  NULL,       1 << 8,       0,           -1 },
++	{ "firefox",  NULL,       1 << 8,       0,           -1,     0,  0, 0,    0 },
+ };
+ 
+ /* layout(s) */
+diff --git a/dwl.c b/dwl.c
+index 4ff5c37f7..d7f41b262 100644
+--- a/dwl.c
++++ b/dwl.c
+@@ -209,6 +209,10 @@ typedef struct {
+ 	uint32_t tags;
+ 	int isfloating;
+ 	int monitor;
++	int x;
++	int y;
++	float w;
++	float h;
+ } Rule;
+ 
+ typedef struct {
+@@ -465,6 +469,18 @@ applyrules(Client *c)
+ 			wl_list_for_each(m, &mons, link)
+ 				if (r->monitor == i++)
+ 					mon = m;
++			if (c->isfloating) {
++				struct wlr_box b = center_relative_to_monitor ? mon->m : mon->w;
++				float newwidth = r->w ? (r->w <= 1 ? b.width * r->w : r->w) : c->geom.width;
++				float newheight = r->h ? (r->h <= 1 ? b.height * r->h : r->h) : c->geom.height;
++
++				resize(c, (struct wlr_box){
++					.x = r->x ? r->x + b.x : (b.width - newwidth) / 2 + b.x,
++					.y = r->y ? r->y + b.y : (b.height - newheight) / 2 + b.y,
++					.width = newwidth,
++					.height = newheight,
++				}, 1);
++			}
+ 		}
+ 	}
+ 	wlr_scene_node_reparent(&c->scene->node, layers[c->isfloating ? LyrFloat : LyrTile]);

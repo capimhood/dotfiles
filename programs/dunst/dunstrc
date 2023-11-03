@@ -1,0 +1,121 @@
+[global]
+    monitor = 0
+    follow = none
+
+    ### Geometry ###
+    width = 300
+    height = 300
+    origin = top-right
+    offset = 10x50
+    scale = 0
+    notification_limit = 0
+
+    ### Progress bar ###
+    highlight = "#7fbbb3"
+    progress_bar = true
+    progress_bar_height = 10
+    progress_bar_frame_width = 1
+    progress_bar_min_width = 150
+    progress_bar_max_width = 300
+    indicate_hidden = yes
+    transparency = 0
+    separator_height = 2
+
+    padding = 8
+    horizontal_padding = 8
+    text_icon_padding = 0
+
+    frame_width = 1
+    frame_color = "#374145"
+
+    gap_size = 8
+
+    separator_color = frame
+
+    # Sort messages by urgency.
+    sort = yes
+
+    font = CozetteVector Medium 8
+
+    line_height = 0
+    markup = full
+    format = "<b>%s</b>\n%b"
+
+    alignment = left
+    vertical_alignment = center
+    show_age_threshold = 60
+
+    ellipsize = middle
+    # Ignore newlines '\n' in notifications.
+    ignore_newline = no
+    # Stack together notifications with the same content
+    stack_duplicates = true
+    # Hide the count of stacked notifications with the same content
+    hide_duplicate_count = false
+    # Display indicators for URLs (U) and actions (A).
+    show_indicators = yes
+
+    ### Icons ###
+    enable_recursive_icon_lookup = true
+    # Set icon theme (only used for recursive icon lookup)
+    icon_theme = "Everforest-Dark"
+    # icon_theme = "Adwaita, breeze"
+
+    # Align icons left/right/top/off
+    icon_position = left
+    min_icon_size = 10
+
+    max_icon_size = 46
+
+    # icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/
+
+    ### History ###
+
+    # Should a notification popped up from history be sticky or timeout
+    # as if it would normally do.
+    sticky_history = yes
+
+    # Maximum amount of notifications kept in history
+    history_length = 20
+
+    always_run_script = true
+    # Define the title of the windows spawned by dunst
+    title = Dunst
+    # Define the class of the windows spawned by dunst
+    class = Dunst
+    corner_radius = 0
+    ignore_dbusclose = false
+    ### Wayland ###
+
+    # Set this to true to use X11 output on Wayland.
+    force_xwayland = false
+    force_xinerama = false
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
+
+[experimental]
+    per_monitor_dpi = false
+
+[urgency_low]
+    # IMPORTANT: colors have to be defined in quotation marks.
+    # Otherwise the "#" and following would be interpreted as a comment.
+    background = "#1e2326"
+    foreground = "#d3c6aa"
+    timeout = 10
+    # Icon for notifications with low urgency, uncomment to enable
+    #default_icon = /path/to/icon
+
+[urgency_normal]
+    background = "#1e2326"
+    foreground = "#d3c6aa"
+    timeout = 10
+    # Icon for notifications with normal urgency, uncomment to enable
+    #default_icon = /path/to/icon
+
+[urgency_critical]
+    background = "#282828"
+    foreground = "#d3c6aa"
+    frame_color = "#fabd2f"
+    timeout = 0
+    #default_icon = /path/to/icon
