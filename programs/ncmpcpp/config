@@ -1,0 +1,37 @@
+#ncmpcpp_directory = ~/.config/ncmpcpp
+#lyrics_directory = ~/.config/ncmpcpp/lyrics
+#
+mpd_host = localhost
+mpd_port = 6600
+mpd_connection_timeout = 5
+mpd_music_dir = ~/music
+mpd_crossfade_time = 0
+
+##### music visualizer #####
+ audio_output {
+        type            "fifo"
+        name            "Visualizer feed"
+        path            "/tmp/mpd.fifo"
+        format          "44100:16:2"
+ }
+
+visualizer_data_source = /tmp/mpd.fifo
+
+## Note: Below parameter is needed for ncmpcpp to determine which output
+## provides data for visualizer and reset it at the beginning of visualization
+## to synchronize with audio.
+##
+#
+visualizer_output_name = Visualizer feed
+#
+##
+## If you set format to 44100:16:2, make it 'yes'.
+##
+visualizer_in_stereo = yes
+#
+##
+## Note: set below to >=10 only if you have synchronization issues with
+## visualization and audio.
+##
+#
+visualizer_sync_interval = 0

@@ -1,0 +1,65 @@
+def_key "k"
+  scroll_up
+
+def_key "j"
+  scroll_down
+
+def_key "enter"
+  enter_directory
+
+def_key "enter"
+  play_item
+
+def_key "right"
+  volume_up
+
+def_key "="
+  volume_up
+
+def_key "-"
+  volume_down
+
+def_key "h"
+  previous_column
+
+def_key "@"
+  show_server_info
+
+def_key "P"
+  stop
+
+def_key "p"
+  pause
+
+def_key "backspace"
+  replay_song
+
+def_key "x"
+  toggle_crossfade
+
+def_key "u"
+  update_database
+
+def_key "e"
+  edit_song
+
+def_key "l"
+  show_lyrics
+
+def_key "\\"
+  toggle_interface
+
+def_key "!"
+  toggle_separators_between_albums
+
+#def_key "L"
+  toggle_lyrics_fetcher
+
+def_key "F"
+  fetch_lyrics_in_background
+
+def_key "~"
+  refetch_lyrics
+
+def_key "q"
+  quit
