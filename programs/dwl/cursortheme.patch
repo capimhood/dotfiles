@@ -1,0 +1,36 @@
+From 96d4e51e9354df5a726ee58e8ccb36888970f071 Mon Sep 17 00:00:00 2001
+From: Dmitry Zakharchenko <dmitz@disroot.org>
+Date: Tue, 3 Jan 2023 23:53:07 +0200
+Subject: [PATCH] cursortheme: sync with 0.4
+
+---
+ config.def.h | 2 ++
+ dwl.c        | 2 +-
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/config.def.h b/config.def.h
+index a4f7c13d0..7cfd24173 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -5,6 +5,8 @@ static const unsigned int borderpx         = 1;  /* border pixel of windows */
+ static const float rootcolor[]             = {0.3, 0.3, 0.3, 1.0};
+ static const float bordercolor[]           = {0.5, 0.5, 0.5, 1.0};
+ static const float focuscolor[]            = {1.0, 0.0, 0.0, 1.0};
++static const char cursortheme[]            = NULL; /* theme from /usr/share/cursors/xorg-x11 */
++static const unsigned int cursorsize       = 24;
+ /* To conform the xdg-protocol, set the alpha to zero to restore the old behavior */
+ static const float fullscreen_bg[]         = {0.1, 0.1, 0.1, 1.0};
+ 
+diff --git a/dwl.c b/dwl.c
+index 19bb6ce34..946a00fd7 100644
+--- a/dwl.c
++++ b/dwl.c
+@@ -2190,7 +2190,7 @@ setup(void)
+ 	 * Xcursor themes to source cursor images from and makes sure that cursor
+ 	 * images are available at all scale factors on the screen (necessary for
+ 	 * HiDPI support). Scaled cursors will be loaded with each output. */
+-	cursor_mgr = wlr_xcursor_manager_create(NULL, 24);
++	cursor_mgr = wlr_xcursor_manager_create(cursortheme, cursorsize);
+ 
+ 	/*
+ 	 * wlr_cursor *only* displays an image on screen. It does not move around
