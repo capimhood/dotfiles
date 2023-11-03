@@ -1,0 +1,30 @@
+#!/bin/bash
+
+get_brightness () {
+    value=$(light)
+    printf "%.0f\n" "$value"
+}
+
+raise_brightness () {
+    light -A $1
+    show_notification
+}
+
+lower_brightness () {
+    light -U $1
+    show_notification
+}
+
+show_notification () {
+    BRIGHTNESS=$(get_brightness)
+    notify-send -i /usr/share/icons/Everforest-Dark/status/symbolic/display-brightness-high-symbolic.svg -a brightness -h int:value:$BRIGHTNESS -t 1000 -u normal -r 2593 "Brightness"
+}
+
+case $1 in
+    raise) raise_brightness $2 ;;
+    lower) lower_brightness $2 ;;
+esac
+
+### EXAMPLE USE
+#  $ getbrightness raise 1
+#  $ getbrightness lower 1

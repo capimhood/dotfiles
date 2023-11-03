@@ -1,0 +1,101 @@
+#!/bin/bash
+
+get_volume () {
+    mute_check=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -o MUTED)
+    if [[ "MUTED" == $mute_check ]]
+    then
+        volume=0.00
+    else volume=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d " " -f 2)
+    fi
+    echo $volume*10 | awk -v volume=$volume "{print(volume*100)}"
+}
+
+get_volume_mic () {
+    mute_check=$(wpctl get-volume 46 | grep -o MUTED)
+    if [[ "MUTED" == $mute_check ]]
+    then
+        volume=0.00
+    else
+        volume=$(wpctl get-volume 46 | cut -d " " -f 2)
+    fi
+    echo $volume*10 | awk -v volume=$volume "{print(volume*100)}"
+}
+
+get_sink_name () {
+    wpctl inspect @DEFAULT_AUDIO_SINK@ | grep node.description | grep -o '".*"' | sed 's/"//g'
+}
+
+get_sink_name_mic () {
+    wpctl inspect 46 | grep node.description | grep -o '".*"' | sed 's/"//g'
+}
+
+### SPEAKERS
+raise_volume () {
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+
+    show_notification
+}
+
+lower_volume () {
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-
+    show_notification
+}
+
+toggle_mute_volume () {
+    wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+    show_notification
+}
+
+### MICROPHONE
+raise_volume_mic () {
+    wpctl set-volume 46 1%+
+    show_notification_mic
+}
+
+lower_volume_mic () {
+    wpctl set-volume 46 1%-
+    show_notification_mic
+}
+
+toggle_mute_volume_mic () {
+    wpctl set-mute 46 toggle
+    show_notification_mic
+    notify-send -i /usr/share/icons/Everforest-Dark/status/symbolic/microphone-sensitivity-low-symbolic.svg
+}
+
+
+switch_audio_sink() {
+    declare -A SINKS
+    SINK_NAMES=$(pactl list sinks | grep -E "Description" | sed "s/\s*Description: //")
+    SINK_INFO=$(pactl list sinks | grep -E "Description|object.id" | sed "s/\s*Description: \|\s*object.id = //" | tr -d "\"")
+    while read -r sink_name; read -r sink_id; do
+        SINKS["$sink_name"]="$sink_id"
+    done <<< "$SINK_INFO"
+    CHOSEN_SINK=$(echo ${SINKS[$(echo "$SINK_NAMES" | rofi -dmenu -i -p "Choose audio output")]} | tr -d "\n")
+    if [ -n "$CHOSEN_SINK" ]; then
+        pactl set-default-sink $CHOSEN_SINK
+        show_notification
+    fi
+}
+
+show_notification () {
+    VOLUME=$(get_volume)
+    SINK_NAME=$(get_sink_name)
+    notify-send -i /usr/share/icons/Everforest-Dark/status/symbolic/audio-volume-high-symbolic.svg -a volume -h int:value:$VOLUME -t 1000 -u normal -r 2593 "$SINK_NAME"
+}
+
+show_notification_mic () {
+    VOLUME_MIC=$(get_volume_mic)
+    SINK_NAME_MIC=$(get_sink_name_mic)
+    notify-send -i /usr/share/icons/Everforest-Dark/status/symbolic/audio-input-microphone-high-symbolic.svg -a volume -h int:value:$VOLUME_MIC -t 1000 -u normal -r 2593 "$SINK_NAME_MIC"
+}
+
+case $1 in
+    raise_mic) raise_volume_mic $2 ;;
+    lower_mic) lower_volume_mic $2 ;;
+    mute_mic)  toggle_mute_volume_mic ;;
+    raise) raise_volume $2 ;;
+    lower) lower_volume $2 ;;
+    lower) lower_volume $2 ;;
+    mute)  toggle_mute_volume ;;
+    switch_sink) switch_audio_sink ;;
+esac
