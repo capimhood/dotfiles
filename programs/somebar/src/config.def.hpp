@@ -1,5 +1,5 @@
 // somebar - dwl bar
-// See LICENSE file for copyright and license details.
+// see license file for copyright and license details.
 
 #pragma once
 #include "common.hpp"
@@ -7,18 +7,18 @@
 
 constexpr bool topbar = true;
 
-constexpr int paddingX = 10;
-constexpr int paddingY = 3;
+constexpr int paddingx = 10;
+constexpr int paddingy = 3;
 
-// See https://docs.gtk.org/Pango/type_func.FontDescription.from_string.html
-constexpr const char* font = "scientifica 10";
+// see https://docs.gtk.org/pango/type_func.fontdescription.from_string.html
+constexpr const char* font = "scientifica bold 10";
 
-//						#9da9a0 		 #1e2326
-constexpr ColorScheme colorInactive = {Color(0x9d, 0xa9, 0xa0), Color(0x1e, 0x23, 0x26)};
-//						#1e2326			#a7c080
-constexpr ColorScheme colorActive = {Color(0x1e, 0x23, 0x26), Color(0xa7, 0xc0, 0x80)};
+//					                               	#9da9a0          		 #1e2326
+constexpr colorscheme colorinactive = {color(0x9d, 0xa9, 0xa0), color(0x1e, 0x23, 0x26)};
+//			                               			#a7c080		          	#a132326
+constexpr colorscheme coloractive = {color(0xa7, 0xc0, 0x80), color(0x1e, 0x23, 0x26)};
 
-static std::vector<std::string> tagNames = {
+static std::vector<std::string> tagnames = {
 	"1", "2", "3",
 	"4", "5", "6",
 	"7", "8", "9",
@@ -26,7 +26,7 @@ static std::vector<std::string> tagNames = {
 
 constexpr const char* termcmd[] = {"foot", nullptr};
 constexpr const char* editconfig[] = {"foot", "-e", "hx", "~/.local/src/dwl/config.h", nullptr};
-constexpr Button buttons[] = {
-	{ ClkStatusText,   BTN_LEFT,  spawn,      {.v = termcmd} },
-	{ ClkStatusText,   BTN_RIGHT,  spawn,      {.v = editconfig} },
+constexpr button buttons[] = {
+	{ clkstatustext,   btn_left,  spawn,      {.v = termcmd} },
+	{ clkstatustext,   btn_right,  spawn,      {.v = editconfig} },
 };

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Everforest theme
+
+while true
+do 
+      VOLUME=("<span foreground='#DBBC7F'>vol $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d "." -f 2)%</span>")
+      MEMORY=("<span foreground='#E67E80'>mem $(free -hL | awk '{print $6}')</span>")
+      TIME=("<span foreground='#83C092'>$(date '+%b %d (%a) %I:%M%p')</span>")
+      somebar -c status ${VOLUME} ${MEMORY} ${TIME}
+      sleep 0.2
+
+done
+

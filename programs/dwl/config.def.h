@@ -1,16 +1,24 @@
+/* Taken from https://github.com/djpohly/dwl/issues/466 */
+#define COLOR(hex)    { ((hex >> 24) & 0xFF) / 255.0f, \
+                        ((hex >> 16) & 0xFF) / 255.0f, \
+                        ((hex >> 8) & 0xFF) / 255.0f, \
+                        (hex & 0xFF) / 255.0f }
+
 /* appearance */
 static const int sloppyfocus               = 1;  /* focus follows mouse */
 static const int bypass_surface_visibility = 0;  /* 1 means idle inhibitors will disable idle tracking even if it's surface isn't visible  */
 static const int smartgaps                 = 0;  /* 1 means no outer gap when there is only one window */
 static const unsigned int borderpx         = 2;  /* border pixel of windows */
 static const unsigned int gappx            = 10; /* horiz inner gap between windows */
-static const float bordercolor[]           = {0.902, 0.596, 0.459, 1.0}; // #e69875
-static const float focuscolor[]            = {0.655, 0.753, 0.502, 1.0}; // #a7c080
-static const float urgentcolor[]           = {0.902, 0.494, 0.502, 1.0};
-static const float floatcolor[]						 = {0.859, 0.737, 0.498, 1.0};
+static const float bordercolor[]           = COLOR(0xe69875ff);
+static const float focuscolor[]            = COLOR(0xa7c080ff);
+static const float urgentcolor[]           = COLOR(0xe67e80ff);
+static const float floatcolor[]						 = COLOR(0x83c092ff);
 /* To conform the xdg-protocol, set the alpha to zero to restore the old behavior */
-static const float fullscreen_bg[]         = {0.118,0.137,0.149, 1.0}; // #1e2326
-static const char cursortheme[]            = "$HOME/.local/share/themes/Everforest-Dark/"; /* theme from /usr/share/cursors/xorg-x11 */
+static const float fullscreen_bg[]         = COLOR(0x1e2326ff); // #1e2326
+static const char cursortheme[]            = "/home/capim/.local/share/icons/Everforest-Cursor/"; /* theme from /usr/share/cursors/xorg-x11 */
+// CHANGE THIS TO MATCH YOUR USER NAME!
+
 static const unsigned int cursorsize       = 14;
 // static const int center_relative_to_monitor = 0; /* 0 means center floating relative to the window area */
 
@@ -18,9 +26,9 @@ static const unsigned int cursorsize       = 14;
 // static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 
 static const char *const autostart[] = {
-	"someblocks", NULL,
 	"pipewire", "&", "wireplumber", NULL,
-	"swaybg", "-i", "/home/capim/images/wallpapers/everforest/guts.png", NULL, // CHANGE THIS TO MATCH YOUR USER NAME!
+	"barstatus", NULL,
+	"loadwallpaper", NULL, // CHANGE THIS TO MATCH YOUR USER NAME!
 	"gsettings", "set", "org.gnome.desktop.interface", "gtk-theme", "'Everforest-Dark'", NULL,
 	"gsettings", "set", "org.gnome.desktop.interface", "icon-theme", "'Everforest-Dark-Icons'", NULL,
 	"gsettings", "set", "org.gnome.desktop.interface", "cursor-size", "14", NULL,
@@ -136,9 +144,9 @@ static const char *togglebar[] = { "somebar", "-c", "toggle", "all", NULL };
 // PRINTING
 
 // grim -g "$(slurp)" - | swappy  -f -
-static const char *grabscreen[] =    { "grim", "-g", "\"$(slurp)\"", "-", "|", "swappy",  "-f", "-", NULL };
+static const char *grabscreen[] =    { "slurpshot", NULL };
 // grim - | swappy -f -
-static const char *printscreen[] =   { "grim", "-", "|", "swappy", "-f", "-", NULL };
+static const char *printscreen[] =   { "screenshot", NULL };
 
 // WEB
 static const char *browser[] =    { "librewolf", NULL };

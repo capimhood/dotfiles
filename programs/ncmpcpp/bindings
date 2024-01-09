@@ -5,6 +5,9 @@ def_key "j"
   scroll_down
 
 def_key "enter"
+  run_action
+
+def_key "enter"
   enter_directory
 
 def_key "enter"
