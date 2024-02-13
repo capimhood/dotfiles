@@ -1,0 +1,89 @@
+
+{
+    "layer": "top", // Waybar at top layer
+    "position": "left", // Waybar position (top|bottom|left|right)
+    "height": 768, // Waybar height (to be removed for auto height)
+    "width": 10, // Waybar width
+    "spacing": 8, // Gaps between modules (4px)
+
+    // Choose the order of the modules
+    "modules-left": ["river/tags"],
+    // "modules-center": ["river/mode"],
+    "modules-right": ["wireplumber", "backlight", "network", "memory", "temperature", "cpu", "clock", "tray"],
+
+    // Modules configuration
+    // "sway/workspaces": {
+    //     "disable-scroll": true,
+    //     "all-outputs": true,
+    //     "warp-on-scroll": false,
+    //     "format": "{name}: {icon}",
+    //     "format-icons": {
+    //         "1": "",
+    //         "2": "",
+    //         "3": "",
+    //         "4": "",
+    //         "5": "",
+    //         "urgent": "",
+    //         "focused": "",
+    //         "default": ""
+    //     }
+    // },
+
+    "clock": {
+        "interval": 1,
+        "format": "{:%H:%M:%S}",
+        "timezone": "America/Sao_Paulo",
+        "max-length": 25
+    },
+
+    "river/tags": {
+        "num-tags": 10,
+
+    },
+     "river/mode": {
+         "format": "{}"
+     }, 
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "clock#brazil": {
+        "timezone": "Brazil/East"
+    },
+    "cpu": {
+        "format": " {usage}%",
+        "tooltip": true
+    },
+    "memory": {
+        "interval": 10,
+        "format": " {used:0.1f}G"
+    },
+     "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        "format-critical": " {temperatureC}°C",
+        "format": " {temperatureC}°C"
+    },   
+     "backlight": {
+        "device": "acpi_video1",
+        "format": "{icon} {percent}%",
+        "format-icons": [""]
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "󰀂  on ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "󰪎 off",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "wireplumber": {
+    "format":  " {icon} {volume}%",
+    "format-muted": "",
+    "format-icons": ["", "", ""],
+    "on-click": "foot -e pulsemixer"
+    },
+}
+
