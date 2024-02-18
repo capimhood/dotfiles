@@ -8,7 +8,7 @@
 
     // Choose the order of the modules
     "modules-left": ["river/tags"],
-    // "modules-center": ["river/mode"],
+    // "modules-center": ["river/modes"],
     "modules-right": ["wireplumber", "backlight", "network", "memory", "temperature", "cpu", "clock", "tray"],
 
     // Modules configuration
@@ -28,11 +28,12 @@
     //         "default": ""
     //     }
     // },
-
     "clock": {
         "interval": 1,
         "format": "{:%H:%M:%S}",
         "timezone": "America/Sao_Paulo",
+        "tooltip": true,
+        "tooltip-format": "{:%d-%m-%Y}",
         "max-length": 25
     },
 
@@ -47,15 +48,12 @@
         // "icon-size": 21,
         "spacing": 10
     },
-    "clock#brazil": {
-        "timezone": "Brazil/East"
-    },
     "cpu": {
         "format": " {usage}%",
         "tooltip": true
     },
     "memory": {
-        "interval": 10,
+        "interval": 1,
         "format": " {used:0.1f}G"
     },
      "temperature": {

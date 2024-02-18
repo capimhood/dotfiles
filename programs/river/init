@@ -1,7 +1,5 @@
-
 #!/bin/sh
 
-## SCREEN
 
 ## BRIGHTNESS
 riverctl map normal Super W spawn 'pkill waybar'
@@ -21,7 +19,31 @@ riverctl map normal Super P spawn 'slurpshot'
 riverctl map normal Super+Shift P spawn 'screenshot'
 riverctl map normal Super D spawn 'fuzzel'
 
+# CASUAL
 riverctl map normal Super B spawn 'librewolf'
+riverctl map normal Super Return spawn 'foot'
+riverctl map normal Super+Shift T spawn 'notify-send "$(date)"'
+
+# Set background and border color
+riverctl background-color 0x1e2326
+riverctl border-color-focused 0xa7c080
+riverctl border-color-unfocused 0xe69875
+
+# Set keyboard settings
+riverctl set-repeat 50 300
+
+riverctl keyboard-layout br
+
+# Make all views with an app-id that starts with "float" and title "foo" start floating.
+# Set the default layout generator to be rivertile and start it.
+# River will send the process group of the init executable SIGTERM on exit.
+riverctl default-layout rivertile
+rivertile -view-padding 5 -outer-padding 5 &
+
+# For info, run riverctl list-inputs | grep -i touchpad
+riverctl input "pointer-1739-30149-DELL07DE:00_06CB:75C5_Touchpad" tap enabled
+riverctl xcursor-theme Everforest-Cursor
+
 
 # This is the example configuration file for river.
 #
@@ -34,7 +56,6 @@ riverctl map normal Super B spawn 'librewolf'
 # Note: the "Super" modifier is also known as Logo, GUI, Windows, Mod4, etc.
 
 # Super+Shift+Return to start an instance of foot (https://codeberg.org/dnkl/foot)
-riverctl map normal Super Return spawn foot
 
 # Super+Q to close the focused view
 riverctl map normal Super Q close
@@ -140,31 +161,8 @@ riverctl map normal Super+Shift F11 enter-mode passthrough
 # Super+F11 to return to normal mode
 riverctl map passthrough Super+Shift F11 enter-mode normal
 
-# Set background and border color
-riverctl background-color 0x1e2326
-riverctl border-color-focused 0xa7c080
-riverctl border-color-unfocused 0xe69875
-
-# Set keyboard settings
-riverctl set-repeat 50 300
-
-riverctl keyboard-layout br
-
-# Make all views with an app-id that starts with "float" and title "foo" start floating.
-riverctl float-filter-add -app-id 'pulsemixer foot'
-
-# Make all views with app-id "bar" and any title use client-side decorations
-riverctl rule-add -app-id "bar" csd
-
-# Set the default layout generator to be rivertile and start it.
-# River will send the process group of the init executable SIGTERM on exit.
-riverctl default-layout rivertile
-rivertile -view-padding 6 -outer-padding 6 &
-
-riverctl input "pointer-1739-30149-DELL07DE:00_06CB:75C5_Touchpad" tap enabled
-riverctl xcursor-theme Everforest-Cursor
-
 ### PROGRAMS
-dbus-update-activation-environment
-waybar
-
+# dbus-update-activation-environment
+# waybar
+# pipewire
+# loadwallpaper
