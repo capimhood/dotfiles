@@ -18,6 +18,7 @@ riverctl map normal Super S   spawn 'foot -e pulsemixer'
 riverctl map normal Super P spawn 'slurpshot'
 riverctl map normal Super+Shift P spawn 'screenshot'
 riverctl map normal Super D spawn 'fuzzel'
+riverctl map normal Super C spawn 'hyprpicker | wl-copy && notify-send --expire-time=5000 "$(wl-paste)"'
 
 # CASUAL
 riverctl map normal Super B spawn 'librewolf'
@@ -41,7 +42,7 @@ riverctl default-layout rivertile
 rivertile -view-padding 5 -outer-padding 5 &
 
 # For info, run riverctl list-inputs | grep -i touchpad
-riverctl input "pointer-1739-30149-DELL07DE:00_06CB:75C5_Touchpad" tap enabled
+# riverctl input "pointer-1739-30149-DELL07DE:00_06CB:75C5_Touchpad" tap enabled
 riverctl xcursor-theme Everforest-Cursor
 
 
