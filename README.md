@@ -2,5 +2,6 @@
 
 My desktop, programs, scripts and wallpapers
 
-![Desktop](images/desktop.png)
-![Terminal](images/foot.png)
+![desktop](images/desktop.png)
+![terminal](images/foot.png)
+![browser](images/browser.png)
