@@ -13,14 +13,14 @@ character = "▏" # Some characters that work well: "▏", "┆", "┊", "⸽"
 skip-levels = 3
 
 [editor.statusline]
-left = ["mode"]
+left = ["mode", "spinner", "file-modification-indicator"]
 center = ["file-name"]
-right = ["spinner","diagnostics", "position", "file-type"]
-# separator = "|"
+right = ["diagnostics", "position", "file-type"]
+separator = " "
 mode.normal = "NOR"
 mode.insert = "INS"
 mode.select = "VIS"
-
+# file-modification-indicator = "+"
 
 ### KEYBINDINGS ###
 [keys.normal]
@@ -40,7 +40,7 @@ O = ["open_above", "insert_mode"]
 "$" = "goto_line_end"
 "^" = "goto_first_nonwhitespace"
 G = "goto_file_end"
-"%" = "match_brackets"
+# "%" = "match_brackets"
 V = ["select_mode", "extend_to_line_bounds"]
 C = ["extend_to_line_end", "yank_main_selection_to_clipboard", "delete_selection", "insert_mode"]
 D = ["extend_to_line_end", "yank_main_selection_to_clipboard", "delete_selection"]

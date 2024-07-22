@@ -66,7 +66,7 @@
 # "ui.background" = { fg = "foreground" }
 "ui.background" = { bg = "bg0" }
 
-"ui.background.separator" = "bg3"
+"ui.background.separator" = "bg0"
 "ui.statusline.separator" = { fg = "fg", bg = "bg3" }
 "ui.cursor" = { fg = "bg1", bg = "grey1" }
 "ui.cursor.insert" = { fg = "bg0", bg = "grey1" }
