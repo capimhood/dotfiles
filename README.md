@@ -3,5 +3,5 @@
 My desktop, programs, scripts and wallpapers
 
 ![desktop](images/desktop.png)
-![busy](images/busy.png)
-![browser](images/librewolf.png)
+![terminal](images/terminal.png)
+![browser](images/browser.png)
