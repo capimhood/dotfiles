@@ -1,52 +1,89 @@
+@define-color main-font       #d3c6aa;
+@define-color main-bg         #1e2326;
+@define-color sub-bg          #272e33;
+@define-color gray            #9da9a0;
+
+@define-color red             #e67e80;
+@define-color orange          #e69875;
+@define-color yellow          #dbbc7f;
+@define-color bg_yellow       #45443c;
+@define-color green           #a7c080;
+@define-color blue            #7fbbb3;
+@define-color aqua            #83c092;
+@define-color purple          #d699b6;
+@define-color warning-color   #e67e80;
 
 * {
     font-family: "Symbols Nerd Font Mono", "scientifica";
     font-size: 11px;
-    padding: 4px 0px;
+    min-width: 0px;
     min-height: 0px;
+    margin: 2px;
 }
 
 window#waybar {
-    background-color: #1e2326;
-    padding-bottom: 0px;
-    border-right: 2px solid #272e33;
-    color: #d3c6aa;
+    color: @main-font;
+    background-color: @main-bg;
     transition-property: background-color;
     transition-duration: .5s;
-
+    border: 2px solid @sub-bg;
+    margin-left: 8px;
+    border-radius: 16px;
 }
 
-/* window#waybar.hidden { */
-    /* opacity: 0.2; */
-/* } */
+#workspaces {
+  color: @main-font;
+  background: @main-bg;
+}
 
-/* window#waybar.empty { */
-    /* background-color: transparent; */
-    /* padding: 0px; */
-    /* margin: 0px; */
-/* } */
-/* window#waybar.solo { */
-    /* background-color: #FFFFFF; */
+#workspaces button {
+  color: @gray;
+  background: @main-bg;
+	transition: all 0.314s;
+}
+
+#workspaces button.active {
+	color: @main-font;
+	background-color: @sub-bg;
+	border-bottom: 2px solid @green;
+}
+
+#workspaces button.focused {
+  color: @bg_active;
+}
+
+#workspaces button.urgent {
+	background-color:  @warning_color;
+	color: @warning_color;
+	border-bottom: 2px dashed @yellow;
+}
+
+#workspaces button:hover {
+  background: @gray;
+	color: @main-bg;
+}
 
 #tags button {
-    color: #d3c6aa;
-    border-right: 2px solid #272e33;
+  color: @main-font;
+  background: @main-bg;
 
 }
 #tags button.occupied {
-    /* background-color: #272e33; */
-    color: #a7c080;
-    font-weight: bold;
+  color: @gray;
+  background: @main-bg;
+	transition: all 0.314s;
 }
 
 #tags button.focused {
-    background-color: #a7c080;
-    color: #1e2326;
+	color: @main-font;
+	background-color: @sub-bg;
+	border-bottom: 2px solid @green;
 }
 
 #tags button.urgent {
-    background-color: #1e2326;
-    color: #a7c080;
+	background-color:  @warning_color;
+	color: @warning_color;
+	border-bottom: 2px dashed @yellow;
 }
 
 button {
@@ -54,7 +91,7 @@ button {
     /* box-shadow: inset 0 -3px transparent; */
     /* Avoid rounded borders under each button name */
     border: none;
-    border-radius: 0;
+    /* border-radius: 0; */
     transition-property: background-color;
     transition-duration: .5s;
     margin: 0px;
@@ -63,15 +100,11 @@ button {
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 button:hover {
     transition-property: background-color;
-    box-shadow: inset 0 -2px #d3c6aa;
+    box-shadow: inset 0 -2px @main-font;
     transition-duration: .5s;
 
 }
 
-#mode {
-    background-color: #64727D;
-    border-bottom: 3px solid #ffffff;
-}
 
 #clock,
 #battery,
@@ -89,76 +122,67 @@ button:hover {
 #idle_inhibitor,
 #scratchpad,
 #mpd {
-    /* margin: 1px; */
-    padding: 4 0px;
+    padding: 4px;
+    margin: 4px;
+    background-color: @sub-bg;
+    border-radius: 8px;
 }
 
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #tags button {
-    margin-bottom: 0px;
-}
-
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
-    margin-right: 0px;
-}
 
 #clock {
-    color: #a7c080;
-}
-
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
+    color: @green;
 }
 
 #cpu {
-    color: #7fbbb3;
+    color: @blue;
 }
 
 #memory {
-    color: #d699b6;
+    color: @purple;
 }
 
 #backlight {
-    color: #d3c6aa;
+    color: @main-font;
 }
 
 #network {
-    color: #83c092;
+    color: @aqua;
 }
 
 #network.disconnected {
-    color: #9da9a0;
+    color: @gray;
 }
 
 #wireplumber {
-    color: #dbbc7f;
+    color: @yellow;
 }
 
 #wireplumber.muted {
-    color: #45443c;
+    color: @bg_yellow;
 }
 
 #temperature {
-    color: #f0932b;
+    color: @orange;
 }
 
 #temperature.critical {
-    color: #e69875;
+    color: @orange;
 }
 
 #custom-icon {
-    color: #a7c080;
-    font-size: 14px;
+    color: @green;
+    font-size: 15px;
+    padding: 8px;
 }
 
 #tray {
     padding: 0 1px;
-    border-right: 2px solid #272e33;
-    background-color: #1e2326;
+    background-color: @main-bg;
+}
+
+window {
+    background-color: @red;
+
 }
 
 #tray > .passive {
@@ -167,5 +191,4 @@ button:hover {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: #e67e80;
 }
