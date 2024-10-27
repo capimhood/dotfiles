@@ -1,0 +1,48 @@
+sort=-time
+icon-path=/usr/share/icons/Everforest-Dark
+font=Terminess Nerd Font Mono 9
+layer=overlay
+markup=1
+
+### COLORS ###
+background-color=#1e2326
+text-color=#d3c6aa
+border-color=#374145
+progress-color=#3c4841
+
+### DIMENSIONS ###
+width=300
+height=300
+border-size=2
+border-radius=0
+
+### POSITION ###
+padding=8
+outer-margin=20
+
+icons=1
+max-icon-size=14
+### HISTORY
+# max-history=0
+history=0
+max-visible=1
+default-timeout=4000
+ignore-timeout=0
+
+[urgency=low]
+border-color=#374145
+
+[urgency=normal]
+border-color=#374145
+#on-notify=exec makoctl dismiss -g
+
+[urgency=high]
+border-color=#e67e80
+default-timeout=
+
+[category=warning]
+border-color=#dbbc7f
+
+[category=notify-send]
+ignore-timeout=true
+default-timeout=0

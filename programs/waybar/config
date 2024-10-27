@@ -1,16 +1,16 @@
 
 {
     "layer": "top", // Waybar at top layer
-    "position": "left", // Waybar position (top|bottom|left|right)
+    "position": "top", // Waybar position (top|bottom|left|right)
     // "height": 768, // Waybar height (to be removed for auto height)
-    // "width": 10, // Waybar width
-    "margin": "4 4 4 4",
-    "spacing": 4, // Gaps between modules (4px)
+    // "width": 18, // Waybar width
+    // "margin": "4",
+    // "spacing": 0, // Gaps between modules (4px)
 
     // Choose the order of the modules
-    "modules-left": ["custom/icon", "hyprland/workspaces", "river/tags"],
-    // "modules-center": ["custom/icon"],
-    "modules-right": ["wireplumber", "backlight", "network", "memory", "temperature", "cpu", "clock", "tray"],
+    "modules-left": [ "hyprland/workspaces", "custom/icon", "river/tags"],
+    "modules-center": ["clock"],
+    "modules-right": ["custom/weather", "backlight", "wireplumber","network","memory","temperature","cpu","tray" ],
 
 
     "hyprland/workspaces": {
@@ -21,12 +21,11 @@
         // "rotate": 90
     },
 
-
     "river/tags": {
         "num-tags": 10,
 
     },
-     "river/mode": {
+ "river/mode": {
          "format": "{}"
      }, 
     "tray": {
@@ -65,7 +64,7 @@
 
     "clock": {
         "interval": 1,
-        "format": "{:%H:%M}",
+        "format": "{:%H:%M:%S}",
         "timezone": "Brazil/East",
         "tooltip": true,
         "tooltip-format": "{:%d-%m-%Y}",
@@ -80,6 +79,13 @@
     "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     },
 
+"custom/weather": {
+    "format": "{}°",
+    "tooltip": true,
+    "interval": 3600,
+    "exec": "wttrbar",
+    "return-type": "json"
+},
     "custom/icon": {
     "format": "",
     "tooltip": false

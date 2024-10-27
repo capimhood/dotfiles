@@ -1,4 +1,4 @@
-@define-color main-font       #d3c6aa;
+@define-color main-fg         #d3c6aa;
 @define-color main-bg         #1e2326;
 @define-color sub-bg          #272e33;
 @define-color gray            #9da9a0;
@@ -22,7 +22,7 @@
 }
 
 window#waybar {
-    color: @main-font;
+    color: @main-fg;
     background-color: @main-bg;
     transition-property: background-color;
     transition-duration: .5s;
@@ -32,18 +32,17 @@ window#waybar {
 }
 
 #workspaces {
-  color: @main-font;
+  color: @main-fg;
   background: @main-bg;
 }
 
 #workspaces button {
   color: @gray;
   background: @main-bg;
-	transition: all 0.314s;
 }
 
 #workspaces button.active {
-	color: @main-font;
+	color: @main-fg;
 	background-color: @sub-bg;
 	border-bottom: 2px solid @green;
 }
@@ -53,18 +52,25 @@ window#waybar {
 }
 
 #workspaces button.urgent {
-	background-color:  @warning_color;
+	background-color:  @sub-bg;
 	color: @warning_color;
-	border-bottom: 2px dashed @yellow;
+	border-bottom: 2px dashed @orange;
+  animation: blinker 1.618s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }
 
 #workspaces button:hover {
-  background: @gray;
+  background: @green;
 	color: @main-bg;
 }
 
 #tags button {
-  color: @main-font;
+  color: @main-fg;
   background: @main-bg;
 
 }
@@ -75,7 +81,7 @@ window#waybar {
 }
 
 #tags button.focused {
-	color: @main-font;
+	color: @main-fg;
 	background-color: @sub-bg;
 	border-bottom: 2px solid @green;
 }
@@ -100,7 +106,7 @@ button {
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 button:hover {
     transition-property: background-color;
-    box-shadow: inset 0 -2px @main-font;
+    box-shadow: inset 0 -2px @main-fg;
     transition-duration: .5s;
 
 }
@@ -142,7 +148,7 @@ button:hover {
 }
 
 #backlight {
-    color: @main-font;
+    color: @main-fg;
 }
 
 #network {
@@ -177,7 +183,7 @@ button:hover {
 
 #tray {
     padding: 0 1px;
-    background-color: @main-bg;
+    background-color:transparent;
 }
 
 window {

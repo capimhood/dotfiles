@@ -16,14 +16,16 @@ riverctl map normal Super S   spawn 'foot -e pulsemixer'
 ## SCREEN
 riverctl map normal Super P       spawn 'slurpshot'
 riverctl map normal Super+Shift P spawn 'screenshot'
-riverctl map normal Super D       spawn 'fuzzel'
 riverctl map normal Super C       spawn 'hyprpicker -a && notify-send --expire-time=5000 "$(wl-paste)"'
+riverctl map normal Super X       spawn 'hyprmag -r 200 -s 3'
+riverctl map normal Super+Shift C spawn 'swayimg --scale=fit ~/images/everforest.png'
 
 # CASUAL
-riverctl map normal Super B       spawn 'librewolf'
+riverctl map normal Super B       spawn 'waterfox'
 riverctl map normal Super Return  spawn 'foot'
-riverctl map normal Super+Shift T spawn 'notify-send "$(date)"'
-riverctl map normal Super A       spawn 'wlogout'
+riverctl map normal Super+Shift T spawn 'notify-send "Date" "$(date)"'
+riverctl map normal Super D       spawn 'tofi-run | xargs riverctl spawn'
+riverctl map normal Super A       spawn 'tofi-drun --drun-launch=true'
 
 # Set background and border color
 riverctl background-color       0x1e2326
@@ -33,12 +35,27 @@ riverctl border-color-unfocused 0xe69875
 # Window borders
 riverctl rule-add -app-id "org.inkscape.Inkscape"       ssd
 riverctl rule-add -app-id "com.github.wwmm.easyeffects" ssd
+riverctl rule-add -app-id "easyeffects"                 ssd
 riverctl rule-add -app-id "org.pwmt.zathura"            ssd
 riverctl rule-add -app-id "swappy"                      ssd
 riverctl rule-add -app-id "librewolf-default"           ssd
 riverctl rule-add -app-id "Firefox"                     ssd
+riverctl rule-add -app-id "waterfox"                    ssd
 riverctl rule-add -app-id "steam"                       ssd
 riverctl rule-add -app-id "Steam"                       ssd
+riverctl rule-add -app-id "swayimg"                     ssd
+riverctl rule-add -app-id "nwg-look"                    ssd
+riverctl rule-add -app-id "lutris"                      ssd
+
+# Window rules
+riverctl rule-add -app-id Gimp float 
+riverctl rule-add -title "GNU Image Manipulation Program" no-float 
+riverctl rule-add -title "Session Setup" float
+riverctl rule-add -app-id swappy float
+riverctl rule-add -app-id swayimg float
+    riverctl rule-add -app-id swayimg dimensions 900 500
+riverctl rule-add -app-id Library float
+    riverctl rule-add -title Library dimensions 500 500
 
 # Set keyboard settings
 riverctl set-repeat 50 300
@@ -177,5 +194,5 @@ dbus-update-activation-environment &
 gammastep -O 4500 &
 dbus-run-session pipewire &
 loadwallpaper &
-waybar &
+waybar -s ~/.config/waybar/minimal_style.css &
 dbus-run-session mako &
