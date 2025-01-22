@@ -30,7 +30,8 @@ riverctl map normal Super A       spawn 'tofi-drun --drun-launch=true'
 # Set background and border color
 riverctl background-color       0x1e2326
 riverctl border-color-focused   0xa7c080
-riverctl border-color-unfocused 0xe69875
+riverctl border-color-unfocused 0xdbbc7f
+riverctl border-color-urgent    0xe67e80
 
 # Window borders
 riverctl rule-add -app-id "org.inkscape.Inkscape"       ssd
@@ -46,11 +47,16 @@ riverctl rule-add -app-id "Steam"                       ssd
 riverctl rule-add -app-id "swayimg"                     ssd
 riverctl rule-add -app-id "nwg-look"                    ssd
 riverctl rule-add -app-id "lutris"                      ssd
-
+riverctl rule-add -app-id "libreoffice-calc"            ssd
+riverctl rule-add -app-id "libreoffice-startcenter"     ssd
 # Window rules
 riverctl rule-add -app-id Gimp float 
 riverctl rule-add -title "GNU Image Manipulation Program" no-float 
 riverctl rule-add -title "Session Setup" float
+riverctl rule-add -title Library float
+    riverctl rule-add -title Library dimensions 1000 600
+riverctl rule-add -title "About Waterfox" float
+riverctl rule-add -title pulsemixer float
 riverctl rule-add -app-id swappy float
 riverctl rule-add -app-id swayimg float
     riverctl rule-add -app-id swayimg dimensions 900 500
@@ -69,7 +75,6 @@ riverctl default-layout rivertile
 rivertile -view-padding 5 -outer-padding 5 &
 
 # For info, run riverctl list-inputs | grep -i touchpad
-riverctl input "pointer-1739-30149-DELL07DE:00_06CB:75C5_Touchpad" tap enabled
 riverctl xcursor-theme Everforest-Cursor
 
 
@@ -112,8 +117,8 @@ riverctl map normal Super+Shift Comma send-to-output previous
 riverctl map normal Super+Shift Return zoom
 
 # Super+H and Super+L to decrease/increase the main ratio of rivertile(1)
-riverctl map normal Super H send-layout-cmd rivertile "main-ratio -0.01"
 riverctl map normal Super L send-layout-cmd rivertile "main-ratio +0.01"
+riverctl map normal Super H send-layout-cmd rivertile "main-ratio -0.01"
 
 # Super+Shift+H and Super+Shift+L to increment/decrement the main count of rivertile(1)
 riverctl map normal Super+Shift H send-layout-cmd rivertile "main-count +1"
@@ -194,5 +199,5 @@ dbus-update-activation-environment &
 gammastep -O 4500 &
 dbus-run-session pipewire &
 loadwallpaper &
-waybar -s ~/.config/waybar/minimal_style.css &
+waybar &
 dbus-run-session mako &

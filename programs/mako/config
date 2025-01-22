@@ -7,7 +7,7 @@ markup=1
 ### COLORS ###
 background-color=#1e2326
 text-color=#d3c6aa
-border-color=#374145
+border-color=#3c4841
 progress-color=#3c4841
 
 ### DIMENSIONS ###
@@ -24,16 +24,16 @@ icons=1
 max-icon-size=14
 ### HISTORY
 # max-history=0
-history=0
+history=1
 max-visible=1
 default-timeout=4000
 ignore-timeout=0
 
 [urgency=low]
-border-color=#374145
+# border-color=#2e383c
 
 [urgency=normal]
-border-color=#374145
+# border-color=#2e383c
 #on-notify=exec makoctl dismiss -g
 
 [urgency=high]
