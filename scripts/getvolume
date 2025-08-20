@@ -32,12 +32,12 @@ get_sink_name_mic () {
 ### SPEAKERS
 raise_volume () {
     wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+
-    show_notification
+    # show_notification
 }
 
 lower_volume () {
     wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-
-    show_notification
+    # show_notification
 }
 
 toggle_mute_volume () {
